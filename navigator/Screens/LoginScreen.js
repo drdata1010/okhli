@@ -17,6 +17,7 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loader from "../common/Loader";
 
+
 const LoginScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -157,6 +158,7 @@ const LoginScreen = () => {
           validate();
         }}
       />
+
       <Text
         style={{
           fontSize: 18,
@@ -169,7 +171,7 @@ const LoginScreen = () => {
           navigation.navigate("Signup");
         }}
       >
-        Create New Account !
+        Create New Account?
       </Text>
       <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </View>

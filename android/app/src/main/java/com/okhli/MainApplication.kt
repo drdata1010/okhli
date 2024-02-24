@@ -1,4 +1,4 @@
-package com.okhli
+package com.okhlii
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -1,4 +1,4 @@
-package com.okhli
+package com.okhlii
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

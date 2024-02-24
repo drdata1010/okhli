@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259249234282",
+    "project_id": "okhli-firespace",
+    "storage_bucket": "okhli-firespace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259249234282:android:f542ed09fedf1aeba8c513",
+        "android_client_info": {
+          "package_name": "com.okhlii"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUxm9jr75KYTN1EazTCnZZHWWxgplUgNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
