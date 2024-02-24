@@ -16,12 +16,12 @@ const OtpVerify = () => {
         otp,
       });
 
-      console.log("bjahjkhbaskbxjbajsbxjnsakjnsadkjn", response.status);
+      console.log("in Handle verify OTP", response.status);
       if (response.status == 200) {
         Alert.alert(response.data.message);
+        navigation.replace("Login");
       } else {
         Alert.alert(response.data.message);
-        navigation.navigate("Login");
       }
     } catch (error) {
       console.error("Error verifying OTP:", error);
@@ -41,7 +41,7 @@ const OtpVerify = () => {
       handleVerifyOtp();
     }
   };
-  
+
   return (
     <View>
       <Image

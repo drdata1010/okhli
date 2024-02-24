@@ -29,10 +29,20 @@ const LoginScreen = () => {
     const checkLoginStatus = async () => {
       try {
         const token = await AsyncStorage.getItem("authToken");
+        if (token != '0') {
+          navigation.replace("Home");
+          // await axios
+          //   .post("http://10.0.2.2:8000/auth", token)
+          //   .then((response) => {
+          //     console.log(response);
+          //     // Alert.alert(response.data.message);
+          //     console.log("Auth api is working fine");
+          //   })
+          //   .catch((error) => {
+          //     console.error("Error Logging in  :", error);
+          //   });
+        }
 
-        // if (token) {
-        //   navigation.replace("Home");
-        // }
       } catch (error) {
         console.log("Error msg : ", error);
       }
@@ -60,7 +70,6 @@ const LoginScreen = () => {
           }, 1000);
         } else {
           const token = response.data.token;
-          console.log("Token is : ", token);
           AsyncStorage.setItem("authToken", token);
           setTimeout(() => {
             setModalVisible(false);

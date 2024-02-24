@@ -50,5 +50,8 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/drdata1010/okhli.git",
+  "license": "MIT"
 }

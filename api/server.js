@@ -38,7 +38,7 @@ const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "okhlitest@gmail.com",
-        pass: "grym qzpj qczo upax"
+        pass: "tigj ottk kvui koev"
     }
 });
 
@@ -98,13 +98,13 @@ app.post("/register", async (req, res) => {
 app.post('/verify-otp', async (req, res) => {
     try {
         const enteredOTP = req.body.otp;
-        if(enteredOTP == ''){
-            return res.json({message :'Invalid OTP'});
+        if (enteredOTP == '') {
+            return res.json({ message: 'Invalid OTP' });
         }
 
-        const user = await User.findOne({ otp : enteredOTP});
+        const user = await User.findOne({ otp: enteredOTP });
         if (!user) {
-            return res.json({message :'Invalid OTP'});
+            return res.json({ message: 'Invalid OTP' });
         }
 
         if (enteredOTP === user.otp) {
@@ -112,14 +112,14 @@ app.post('/verify-otp', async (req, res) => {
             user.otp = "";
             await user.save();
             console.log("success verification");
-            return res.json({ message: 'OTP verification successful' });
+            return res.status(200).json({ message: 'OTP verification successful' });
         } else {
             return res.status(400).json({ message: 'Invalid OTP' });
         }
 
     } catch (error) {
         console.error('Error verifying user:', error);
-        return res.status(500).json({ message : 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     }
 });
 
@@ -130,29 +130,54 @@ const generateSecretKey = () => {
 }
 
 const secretKey = generateSecretKey();
-// endpoint to login the user
 
+// endpoint to login the user
 app.post('/login', async (req, res) => {
     try {
-        const {email,password} = req.body;
+        const { email, password } = req.body;
 
         //check if the user exists
-        const user = await User.findOne({email});
+        const user = await User.findOne({ email });
 
         if (!user) {
-            return res.json({code : 401 ,message :'Invalid Email'});
+            return res.json({ code: 401, message: 'Invalid Email' });
         }
 
         //check if password is correct or not
-        if(user.password !== password){
-            return res.json({code : 402 ,message : "Invalid password"});
+        if (user.password !== password) {
+            return res.json({ code: 402, message: "Invalid password" });
         }
         //generate a token
-        const token = jwt.sign({userId : user._id},secretKey);
-        res.json({token : token});
+        const token = jwt.sign({ userId: user._id }, secretKey);
+        res.json({ token });
 
     } catch (error) {
         console.error('Error in logging in:', error);
-        return res.status(500).json({ message : 'Login Failed' });
+        return res.status(500).json({ message: 'Login Failed' });
+    }
+});
+
+//Endpoint for Auth token authentication
+
+app.post('/auth', async (req, res) => {
+    try {
+        const authToken = req.body;
+        let key = Object.keys(authToken);
+        key = key[0];
+
+        jwt.verify(key, secretKey, (err, decoded) => {
+            if (err) {
+                console.error('JWT Verification Error:', err.message);
+            } else {
+                console.log('Decoded Token:', decoded);
+            }
+        });
+
+        console.log("auth API Ends Here");
+        return res.status(101).json({ message: 'Auth done' });
+
+    } catch (error) {
+        console.error('Error in logging in:', error);
+        return res.status(500).json({ message: 'Login Failed' });
     }
 });

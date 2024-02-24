@@ -30,20 +30,20 @@ const SignupScreen = () => {
     };
 
     await axios.post("http://10.0.2.2:8000/register", user).then((response) => {
-        navigation.navigate("OtpVer");
-        Alert.alert(response.data.message);
-      }).catch((error) => {
-        console.error("Error registering data :", error);
-        const mess = error.message.slice(-3);
-        console.log(mess);
-        if (mess == 401) {
-          Alert.alert("Email already registered !");
-        } else if (mess == 402) {
-          Alert.alert("Mobile No. Already Registered");
-        } else if (mess == 500) {
-          Alert.alert("Entered Email is not valid");
-        }
-      });
+      navigation.navigate("OtpVer");
+      Alert.alert(response.data.message);
+    }).catch((error) => {
+      console.error("Error registering data :", error);
+      const mess = error.message.slice(-3);
+      console.log(mess);
+      if (mess == 401) {
+        Alert.alert("Email already registered !");
+      } else if (mess == 402) {
+        Alert.alert("Mobile No. Already Registered");
+      } else if (mess == 500) {
+        Alert.alert("Entered Email is not valid");
+      }
+    });
   };
 
   const validate = () => {
