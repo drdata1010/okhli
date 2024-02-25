@@ -16,7 +16,11 @@ import CommonButton from "../common/CommonButton";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loader from "../common/Loader";
+import SignUpFire from "./SignUpFire";
+import { Button } from 'react-native';
+import auth from '@react-native-firebase/auth';
 
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 const LoginScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,22 +30,44 @@ const LoginScreen = () => {
   const [badEmail, setBadEmail] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
 
+
+  useEffect(() => {
+    // Initialize GoogleSignin
+    GoogleSignin.configure({
+      // Add your web client ID here
+      webClientId: '259249234282-rlvq482e8ju91ji7e6qbomc943127spg.apps.googleusercontent.com',
+    });
+  }, []);
+
+  //Firebase Google Sign In function
+  const signIn = async () => {
+    console.log("in Sign In");
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('User Info:', userInfo); //catch this userinfo and send to MongoDB via server.js
+    } catch (error) {
+      console.log('Google Sign-In Error:', error);
+    }
+  };
+
+
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
         const token = await AsyncStorage.getItem("authToken");
         if (token != '0') {
           navigation.replace("Home");
-          // await axios
-          //   .post("http://10.0.2.2:8000/auth", token)
-          //   .then((response) => {
-          //     console.log(response);
-          //     // Alert.alert(response.data.message);
-          //     console.log("Auth api is working fine");
-          //   })
-          //   .catch((error) => {
-          //     console.error("Error Logging in  :", error);
-          //   });
+          await axios
+            .post("http://10.0.2.2:8000/auth", token)
+            .then((response) => {
+              console.log(response);
+              // Alert.alert(response.data.message);
+              console.log("Auth api is working fine");
+            })
+            .catch((error) => {
+              console.error("Error Logging in  :", error);
+            });
         }
 
       } catch (error) {
@@ -151,14 +177,19 @@ const LoginScreen = () => {
         </Text>
       )}
       <CommonButton
-        title={"Login"}
+        title={"Sign In"}
         bgColor={"green"}
         textColor={"white"}
         onPress={() => {
           validate();
         }}
       />
-
+      <GoogleSigninButton
+        style={{ alignSelf: "center", marginTop: 10, width: 200, height: 48 }}
+        size={GoogleSigninButton.Size.Wide}
+        color={GoogleSigninButton.Color.Light}
+        onPress={signIn}
+      />
       <Text
         style={{
           fontSize: 18,

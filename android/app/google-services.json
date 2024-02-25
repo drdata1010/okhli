@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "259249234282",
+    "project_id": "okhli-firespace",
+    "storage_bucket": "okhli-firespace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259249234282:android:f542ed09fedf1aeba8c513",
+        "android_client_info": {
+          "package_name": "com.okhlii"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259249234282-2sfljmk080bhnkhhav3ut4ot0cj052dj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.okhlii",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "259249234282-rlvq482e8ju91ji7e6qbomc943127spg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUxm9jr75KYTN1EazTCnZZHWWxgplUgNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259249234282-rlvq482e8ju91ji7e6qbomc943127spg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

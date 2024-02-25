@@ -7,6 +7,7 @@ import LoginScreen from "./Screens/LoginScreen";
 import SignupScreen from "./Screens/SignupScreen";
 import OtpVerify from "./Screens/OtpVerify";
 import HomeScreen from "./Screens/HomeScreen";
+import SignUpFire from "./Screens/SignUpFire"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Stack = createStackNavigator();
@@ -38,6 +39,11 @@ const StackNavigator = () => {
           options={{ headerShown: false }}
           name="Home"
           component={HomeScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SignUpFire"
+          component={SignUpFire}
         />
       </Stack.Navigator>
     </NavigationContainer>
